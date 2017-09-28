@@ -24,9 +24,17 @@ namespace ModuleRemote
         {
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
-                Remote.Instance().Input(DeviceInput.PREVIOUS);
+                Remote.Instance().Input(DeviceInput.UP);
             }
             if (Input.GetKeyDown(KeyCode.DownArrow))
+            {
+                Remote.Instance().Input(DeviceInput.DOWN);
+            }
+            if (Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                Remote.Instance().Input(DeviceInput.PREVIOUS);
+            }
+            if (Input.GetKeyDown(KeyCode.RightArrow))
             {
                 Remote.Instance().Input(DeviceInput.NEXT);
             }

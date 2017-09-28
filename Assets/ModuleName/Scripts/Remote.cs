@@ -29,9 +29,17 @@ namespace ModuleRemote
         NEXT,
         PREVIOUS
     }
+    public enum CinemaParam
+    {
+        VOLUP,
+        VOLDOWN,
+        LIGHTUP,
+        LIGHTDOWN
+    }
 
     /// <summary>
     /// 遥控器类
+    /// 逻辑相关控制器
     /// </summary>
     public class Remote
     {
@@ -45,9 +53,13 @@ namespace ModuleRemote
         public delegate void RemoteInputHandle(DeviceInput deviceInput);
         public event RemoteInputHandle OnRemotePressed;
 
-        //
+        //电影播放
         public delegate void MoivePlayHandler(Moive moive);
         public event MoivePlayHandler PlayMoive;
+
+        //调节音量
+        public delegate void CinemaParaHandler(CinemaParam param);
+        public event CinemaParaHandler ChangeCinema;
         
         //构造函数
         private Remote()
@@ -103,6 +115,16 @@ namespace ModuleRemote
             DataSet.Instance().CurrentMoiveIndex--;
             if (PlayMoive != null)
                 PlayMoive(DataSet.Instance().moiveList[(DataSet.Instance().CurrentMoiveIndex + DataSet.Instance().moiveList.Count) % DataSet.Instance().moiveList.Count]);
+        }
+        public void VolUp()
+        {
+            if(ChangeCinema!=null)
+                ChangeCinema(CinemaParam.VOLUP);
+        }
+        public void VolDown()
+        {
+            if(ChangeCinema != null)
+                ChangeCinema(CinemaParam.VOLDOWN);
         }
 
 

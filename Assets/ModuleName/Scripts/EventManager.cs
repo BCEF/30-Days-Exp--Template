@@ -40,8 +40,8 @@ namespace ModuleRemote
         {
             switch (deviceInput)
             {
-                case DeviceInput.UP:Remote.Instance().Log("上一个");Remote.Instance().PlayPreviousMoive(); break;
-                case DeviceInput.DOWN:Remote.Instance().Log("下一个");Remote.Instance().PlayNextMoive(); break;
+                case DeviceInput.UP:Remote.Instance().Log("音量增");Remote.Instance().VolUp(); break;
+                case DeviceInput.DOWN:Remote.Instance().Log("音量减");Remote.Instance().VolDown(); break;
                 case DeviceInput.LEFT:break;
                 case DeviceInput.RIGHT:break;
                 case DeviceInput.PREVIOUS: Remote.Instance().Log("上一个"); Remote.Instance().PlayPreviousMoive(); break;
