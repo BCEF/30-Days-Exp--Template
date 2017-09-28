@@ -39,11 +39,15 @@ namespace ModuleRemote
 
         //打印信息事件
         public delegate void LogHandler(string msg);
-        public static event LogHandler OnLogMsg;
-        
+        public event LogHandler OnLogMsg;
+
         //硬件输入事件
         public delegate void RemoteInputHandle(DeviceInput deviceInput);
-        public static event RemoteInputHandle OnRemotePressed;
+        public event RemoteInputHandle OnRemotePressed;
+
+        //
+        public delegate void MoivePlayHandler(Moive moive);
+        public event MoivePlayHandler PlayMoive;
         
         //构造函数
         private Remote()
@@ -78,24 +82,27 @@ namespace ModuleRemote
 
         public void Input(DeviceInput input)
         {
-            OnRemotePressed(input);
+            if(OnRemotePressed!=null)
+                OnRemotePressed(input);
         }
-        
 
         public void Log(string str)
         {
-            OnLogMsg(str);
+            if(OnLogMsg!=null)
+                OnLogMsg(str);
         }
 
-        public ERROR PlayNextMoive()
+        public void PlayNextMoive()
         {
             DataSet.Instance().CurrentMoiveIndex++;
-            return DataSet.Instance().moiveList[(DataSet.Instance().CurrentMoiveIndex) % DataSet.Instance().moiveList.Count].Play();
+            if(PlayMoive!=null)
+                PlayMoive(DataSet.Instance().moiveList[(DataSet.Instance().CurrentMoiveIndex) % DataSet.Instance().moiveList.Count]);
         }
-        public ERROR PlayPreviousMoive()
+        public void PlayPreviousMoive()
         {
             DataSet.Instance().CurrentMoiveIndex--;
-            return DataSet.Instance().moiveList[(DataSet.Instance().CurrentMoiveIndex + DataSet.Instance().moiveList.Count) % DataSet.Instance().moiveList.Count].Play();
+            if (PlayMoive != null)
+                PlayMoive(DataSet.Instance().moiveList[(DataSet.Instance().CurrentMoiveIndex + DataSet.Instance().moiveList.Count) % DataSet.Instance().moiveList.Count]);
         }
 
 

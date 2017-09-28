@@ -21,12 +21,19 @@ namespace ModuleRemote
     public class EventManager: MonoBehaviour
     {
         private string guiDisplayText = "";
+        
         void Start()
         {
             //订阅外部设备输入
-            Remote.OnRemotePressed += Remote_OnRemotePressed;
+            Remote.Instance().OnRemotePressed += Remote_OnRemotePressed;
             //订阅log信息
-            Remote.OnLogMsg += Remote_log;
+            Remote.Instance().OnLogMsg += Remote_log;
+            
+        }
+
+        private void EventManager_PlayMoive(Moive moive)
+        {
+            
         }
 
         private void Remote_OnRemotePressed(DeviceInput deviceInput)

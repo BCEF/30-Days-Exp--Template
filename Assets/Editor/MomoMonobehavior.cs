@@ -12,7 +12,7 @@ using UnityEngine;
 //修改成你自己的命名空间
 namespace ModuleRemote
 {
-    public class SCRIPTNAME2 : MonoBehaviour
+    public class SCRIPTNAME2: MonoBehaviour
     {
 
         // Use this for initialization
