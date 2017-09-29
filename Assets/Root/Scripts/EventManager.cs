@@ -4,6 +4,7 @@
  *  创建时间：2017-9-29 15:58:7
  *  
  */
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +20,7 @@ namespace Root
     {
         NOEVENT,
         ERRORPARAM,
+        FAIL,
         OK
         
     }
@@ -47,6 +49,20 @@ namespace Root
         /// </summary>
         /// <param name="arrayList"></param>
         public delegate void Response(ArrayList arrayList);
+        
+        /// <summary>
+        /// 创建新事件
+        /// </summary>
+        /// <param name="eventName"></param>
+        /// <returns></returns>
+        public MMEvent CreateEvent(string eventName)
+        {   
+            MMEvent mEvent = new MMEvent();
+            mEvent.Name = eventName;
+            DataSetRoot.Instance().eventList.Add(mEvent);
+            return mEvent;
+           
+        }
         
         /// <summary>
         /// 注册一个事件访问器

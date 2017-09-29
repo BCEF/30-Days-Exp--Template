@@ -62,7 +62,8 @@ namespace Root
         /// <param name="param"></param>
         public void OnTrigger(ArrayList param)
         {
-            OnMMEvent(param);
+            if(OnMMEvent!=null)
+                OnMMEvent(param);
         }
     }
 }

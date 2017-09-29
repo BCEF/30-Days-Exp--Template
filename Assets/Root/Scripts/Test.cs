@@ -29,16 +29,16 @@ namespace Root
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                MMEvent m1 = new MMEvent();
-                m1.Name = "test";
-                DataSetRoot.Instance().eventList.Add(m1);
+                EventManager.Instance().CreateEvent("test");
                 EventManager.Instance().RegisterEvent("test",new EventManager.Response(fun));
             }
             if (Input.GetKeyDown(KeyCode.A))
             {
-                ArrayList array = new ArrayList();
-                array.Add(1);
-                array.Add(2);
+                ArrayList array = new ArrayList
+                {
+                    1,
+                    2
+                };
                 EventManager.Instance().Trigger("test", array);
             }
         }
