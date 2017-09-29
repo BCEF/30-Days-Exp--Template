@@ -11,7 +11,7 @@ using UnityEngine;
 //修改成你自己的命名空间
 namespace ModuleRemote
 {
-    public class  Moive
+    public class  Movie
     {
         public string Name
         {

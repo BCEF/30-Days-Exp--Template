@@ -31,7 +31,7 @@ namespace ModuleRemote
             
         }
 
-        private void EventManager_PlayMoive(Moive moive)
+        private void EventManager_Playmovie(Movie movie)
         {
             
         }
@@ -44,8 +44,8 @@ namespace ModuleRemote
                 case DeviceInput.DOWN:Remote.Instance().Log("音量减");Remote.Instance().VolDown(); break;
                 case DeviceInput.LEFT:break;
                 case DeviceInput.RIGHT:break;
-                case DeviceInput.PREVIOUS: Remote.Instance().Log("上一个"); Remote.Instance().PlayPreviousMoive(); break;
-                case DeviceInput.NEXT: Remote.Instance().Log("下一个"); Remote.Instance().PlayNextMoive(); break;
+                case DeviceInput.PREVIOUS: Remote.Instance().Log("上一个"); Remote.Instance().PlayPreviousmovie(); break;
+                case DeviceInput.NEXT: Remote.Instance().Log("下一个"); Remote.Instance().PlayNextmovie(); break;
             }
         }
         private void Remote_log(string msg)

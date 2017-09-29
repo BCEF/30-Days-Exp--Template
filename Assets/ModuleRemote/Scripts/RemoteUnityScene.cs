@@ -5,8 +5,11 @@
  *  
  */
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using UnityEngine;
 
 //修改成你自己的命名空间
@@ -22,7 +25,7 @@ namespace ModuleRemote
         void Start()
         {
             //播放电影事件
-            Remote.Instance().PlayMoive += Controller_PlayMoive; ;
+            Remote.Instance().Playmovie += Controller_Playmovie; ;
             Remote.Instance().ChangeCinema += Controller_ChangeCinemaPara;
             pool = GetComponent<VarManager>();
 
@@ -40,14 +43,12 @@ namespace ModuleRemote
         }
 
         //在场景中控制电影播放
-        private void Controller_PlayMoive(Moive moive)
+        private void Controller_Playmovie(Movie movie)
         {
-            switch (moive.Name)
-            {
-                case "m1":pool.Plane.GetComponent<MeshRenderer>().material = pool.matList[0];Remote.Instance().Log("Path:"+moive.Path); break;
-                case "m2":pool.Plane.GetComponent<MeshRenderer>().material = pool.matList[1];Remote.Instance().Log("Path:" + moive.Path); break;
-                case "m3":pool.Plane.GetComponent<MeshRenderer>().material = pool.matList[2];Remote.Instance().Log("Path:" + moive.Path); break;
-            }
+            var queryMovie = from item in DataSet.Instance().movieList
+                                 where item.Name == movie.Name
+                                 select item;
+            pool.Plane.GetComponent<MeshRenderer>().material.SetTexture("_MainTex", (Texture)Resources.Load(Path.GetFileNameWithoutExtension(queryMovie.ElementAt(0).Path)));
         }
 
         void Update()

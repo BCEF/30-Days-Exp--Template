@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //修改成你自己的命名空间
-namespace ModuleRemote
+namespace ModuleXXX
 {
     public class  SCRIPTNAME
     {

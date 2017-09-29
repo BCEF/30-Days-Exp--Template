@@ -15,7 +15,7 @@ namespace ModuleRemote
     {
         private DataSet()
         {
-            LoadMoives();
+            Loadmovies();
         }
         private static DataSet inst;
         public static DataSet Instance()
@@ -27,22 +27,13 @@ namespace ModuleRemote
             return inst;
         }
 
-        public int CurrentMoiveIndex = 0;
-        public List<Moive> moiveList = new List<Moive>();
-        public ERROR LoadMoives()
+        public int CurrentmovieIndex = 0;
+        public List<Movie> movieList = new List<Movie>();
+        public ERROR Loadmovies()
         {
             try
             {
-                //test
-                Moive m1 = new Moive();
-                m1.Name = "m1";
-                moiveList.Add(m1);
-                Moive m2 = new Moive();
-                m2.Name = "m2";
-                moiveList.Add(m2);
-                Moive m3 = new Moive();
-                m3.Name = "m3";
-                moiveList.Add(m3);
+                movieList = (List<Movie>)CFHelper.LoadData(Application.dataPath + "/ModuleRemote/movieConfig.xml",typeof(List<Movie>));
             }
             catch(System.Exception e)
             {

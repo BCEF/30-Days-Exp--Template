@@ -54,8 +54,8 @@ namespace ModuleRemote
         public event RemoteInputHandle OnRemotePressed;
 
         //电影播放
-        public delegate void MoivePlayHandler(Moive moive);
-        public event MoivePlayHandler PlayMoive;
+        public delegate void moviePlayHandler(Movie movie);
+        public event moviePlayHandler Playmovie;
 
         //调节音量
         public delegate void CinemaParaHandler(CinemaParam param);
@@ -104,17 +104,17 @@ namespace ModuleRemote
                 OnLogMsg(str);
         }
 
-        public void PlayNextMoive()
+        public void PlayNextmovie()
         {
-            DataSet.Instance().CurrentMoiveIndex++;
-            if(PlayMoive!=null)
-                PlayMoive(DataSet.Instance().moiveList[(DataSet.Instance().CurrentMoiveIndex) % DataSet.Instance().moiveList.Count]);
+            DataSet.Instance().CurrentmovieIndex++;
+            if(Playmovie!=null)
+                Playmovie(DataSet.Instance().movieList[(DataSet.Instance().CurrentmovieIndex) % DataSet.Instance().movieList.Count]);
         }
-        public void PlayPreviousMoive()
+        public void PlayPreviousmovie()
         {
-            DataSet.Instance().CurrentMoiveIndex--;
-            if (PlayMoive != null)
-                PlayMoive(DataSet.Instance().moiveList[(DataSet.Instance().CurrentMoiveIndex + DataSet.Instance().moiveList.Count) % DataSet.Instance().moiveList.Count]);
+            DataSet.Instance().CurrentmovieIndex--;
+            if (Playmovie != null)
+                Playmovie(DataSet.Instance().movieList[(DataSet.Instance().CurrentmovieIndex + DataSet.Instance().movieList.Count) % DataSet.Instance().movieList.Count]);
         }
         public void VolUp()
         {
